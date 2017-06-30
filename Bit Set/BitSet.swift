@@ -58,13 +58,24 @@ public struct BitSet {
 
   /* So you can write bitset[99] = ... */
   public subscript(i: Int) -> Bool {
-    get { return isSet(i) }
-    set { if newValue { set(i) } else { clear(i) } }
+    get {
+      return isSet(i)
+    }
+    set {
+      
+      if newValue {
+        set(i)
+      }
+      else {
+        clear(i)
+      }
+    }
   }
 
   /* Sets the bit at the specified index to 1. */
   public mutating func set(_ i: Int) {
     let (j, m) = indexOf(i)
+    // here m some as 000100000 (63 sum of 0)
     words[j] |= m
   }
 
@@ -79,7 +90,9 @@ public struct BitSet {
   /* Sets the bit at the specified index to 0. */
   public mutating func clear(_ i: Int) {
     let (j, m) = indexOf(i)
+    // ~m = 111111101111111 (63 sum of 0)
     words[j] &= ~m
+    
   }
 
   /* Sets all the bits to 0. */
@@ -137,9 +150,11 @@ public struct BitSet {
   /* Checks if none of the bits are set. */
   public func all0() -> Bool {
     for x in words {
-      if x != 0 { return false }
+      if x != 0 {
+        return false
+      }
     }
-    return true
+    return turn
   }
 }
 
@@ -149,6 +164,7 @@ extension BitSet: Equatable {
 }
 
 public func == (lhs: BitSet, rhs: BitSet) -> Bool {
+  // we compare two array
   return lhs.words == rhs.words
 }
 

@@ -36,6 +36,7 @@ public struct OrderedArray<T: Comparable> {
   }
 
   private func findInsertionPoint(newElement: T) -> Int {
+    // use a bi search make the complexcity to O(log(n))
     var range = 0..<array.count
     while range.startIndex < range.endIndex {
       let midIndex = range.startIndex + (range.endIndex - range.startIndex) / 2
