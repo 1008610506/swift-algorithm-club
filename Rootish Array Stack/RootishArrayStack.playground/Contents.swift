@@ -52,6 +52,7 @@ public struct RootishArrayStack<T> {
 
 	// MARK: - Behavior
 
+  // calculte if it need to grow a block into it
 	fileprivate mutating func growIfNeeded() {
 		if capacity - blocks.count < count + 1 {
 			let newArray = [T?](repeating: nil, count: blocks.count + 1)
@@ -59,6 +60,7 @@ public struct RootishArrayStack<T> {
 		}
 	}
 
+  // 压缩
 	fileprivate mutating func shrinkIfNeeded() {
 		if capacity + blocks.count >= count {
 			while blocks.count > 0 && (blocks.count - 2) * (blocks.count - 1) / 2 >= count {
@@ -84,6 +86,7 @@ public struct RootishArrayStack<T> {
 		growIfNeeded()
 		internalCount += 1
 		var i = count - 1
+    // move
 		while i > index {
 			self[i] = self[i - 1]
 			i -= 1
@@ -119,7 +122,7 @@ public struct RootishArrayStack<T> {
 		for block in blocks {
 			description += "\t["
 			for index in 0..<block.count {
-				description += "\(block[index])"
+				description += "\(String(describing: block[index]))"
 				if index + 1 != block.count {
 					description += ", "
 				}

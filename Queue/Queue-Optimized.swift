@@ -44,4 +44,15 @@ public struct Queue<T> {
       return array[head]
     }
   }
+  
+  // equal to the front func
+  public var top: T? {
+    return self.front
+  }
 }
+
+
+
+
+
+
