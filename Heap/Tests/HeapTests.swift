@@ -31,6 +31,7 @@ class HeapTests: XCTestCase {
     return true
   }
 
+  // judge two array have the same element values but not the same order
   fileprivate func isPermutation(_ array1: [Int], _ array2: [Int]) -> Bool {
     var a1 = array1
     var a2 = array2

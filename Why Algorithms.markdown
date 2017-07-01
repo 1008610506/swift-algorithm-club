@@ -18,7 +18,8 @@ There have been apps that I've been unable to create in the past because I got s
 
 Often it was a matter of speed: I just couldn't make the program go fast enough. Thinking back on this now, I had chosen the wrong algorithms for these problems. If I had known more about the difference between **O(n)** and **O(n^2)**, then maybe I would have had better luck.
 
-Naive brute-force solutions work fine for small amounts of data, but sometimes you need to deal with lots of data. And then you need smarter algorithms.
+
+brute-force solutions work fine for small amounts of data, but sometimes you need to deal with lots of data. And then you need smarter algorithms.
 
 There were also times I wasn't able to solve my programming problems at all, not even slowly. I simply didn't know where to begin. Understanding a bit of algorithm theory gives you various tactics you can try.
 

@@ -17,7 +17,7 @@ public struct Deque<T> {
   }
 
   public var isEmpty: Bool {
-    return count == 0
+    return self.count == 0
   }
 
   public var count: Int {

@@ -8,7 +8,9 @@ public struct Heap<T> {
   var elements = [T]()
 
   /** Determines whether this is a max-heap (>) or min-heap (<). */
+  // in fact this is a function, then this is amazing, do you?
   fileprivate var isOrderedBefore: (T, T) -> Bool
+  
 
   /**
    * Creates an empty heap.
@@ -100,6 +102,12 @@ public struct Heap<T> {
     elements.append(value)
     shiftUp(elements.count - 1)
   }
+  
+  public mutating func insertmany<S: Sequence>(_ sequence: S) where S.Iteratror.Element == T {
+    for value in Sequence {
+      insert(value)
+    }
+  }
 
   public mutating func insert<S: Sequence>(_ sequence: S) where S.Iterator.Element == T {
     for value in sequence {
@@ -142,7 +150,8 @@ public struct Heap<T> {
    * Removes an arbitrary node from the heap. Performance: O(log n). You need
    * to know the node's index, which may actually take O(n) steps to find.
    */
-  public mutating func removeAt(_ index: Int) -> T? {
+  public mutating func removeAt(_ index: Int) -> T?
+  {
     guard index < elements.count else { return nil }
 
     let size = elements.count - 1
@@ -165,6 +174,8 @@ public struct Heap<T> {
 
     while childIndex > 0 && isOrderedBefore(child, elements[parentIndex]) {
       elements[childIndex] = elements[parentIndex]
+      
+      // set new index here
       childIndex = parentIndex
       parentIndex = self.parentIndex(ofIndex: childIndex)
     }
@@ -215,7 +226,8 @@ extension Heap where T: Equatable {
   public func index(of element: T) -> Int? {
     return index(of: element, 0)
   }
-
+  
+  // this is a recursion
   fileprivate func index(of element: T, _ i: Int) -> Int? {
     if i >= count { return nil }
     if isOrderedBefore(element, elements[i]) { return nil }
